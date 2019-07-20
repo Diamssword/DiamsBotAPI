@@ -3,9 +3,8 @@ plugins {
   id 'application'
   id 'com.github.johnrengelman.shadow' version '1.2.4'
 }
-apply plugin: 'java'
-apply plugin: 'eclipse'
-mainClassName = 'com.diamssword.bot.api'
+
+mainClassName = 'com.example.jda.Bot'
 
 version '1.0'
 
@@ -13,11 +12,9 @@ sourceCompatibility = 1.8
 
 repositories {
   jcenter()
-}
-
-task sourcesJar(type: Jar) {
-from sourceSets.main.output
-from sourceSets.main.allSource
+   flatDir {
+       dirs 'libs'
+   }
 }
 sourceSets.main{
     java{
@@ -25,10 +22,8 @@ srcDirs 'src'//set the source folder as the /src subfolder
 }
 }
 dependencies {
+   compile name: 'DiamsbotAPI-1.0'
   compile 'net.dv8tion:JDA:3.8.1_447'
   compile 'com.sedmelluq:lavaplayer:1.3.17'
   compile 'com.google.code.gson:gson:2.8.5'
-}
-artifacts {
-    archives sourcesJar
 }
